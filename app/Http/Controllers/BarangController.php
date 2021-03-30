@@ -110,35 +110,23 @@ class BarangController extends Controller
 
     public function cari (Request $request)
     {
-
+ /*
         $cari = $request -> get ('cari');
         $post = DB::table('barang')
-        ->where('nama','like','%'.$cari.'%')->paginate(5)
-        ->orWhere();
+        ->where('nama_barang','like','%'.$cari.'%')->paginate(5);
         return view('barang.index',['posts' => $post]);
 
-         /*
+
         // 2 variabel
-        $posts = Mahasiswa::when($request->keyword, function ($query) use ($request) {
-            $query->where('nama', 'like', "%{$request->keyword}%")
-                ->orWhere('nim', 'like', "%{$request->keyword}%");
-        })->paginate(5);
-        return view('mahasiswas.index',compact('posts'));
 
-
-        $posts = Barang::query()->paginate(5);
-        if(request()->has('kode_barang')) {
-            $posts->where('kode_barang', 'like', request('kode_barang'));
-        }
-        if(request()->has('nama_barang')) {
-            $posts->where('nama_barang', 'like', request('nama_barang'));
-        }
-        // and so on
-        // for fields like PRICE and METERS, you need to user orWhere()
-
-        return view('barang.index',compact('posts'));;
 */
-
+        $cari = $request -> get ('cari');
+        $posts = DB::table('barang')
+            ->where('nama_barang', 'like','%'.$cari.'%')
+            ->orWhere('kategori_barang', 'like','%'.$cari.'%')
+            ->orWhere('kode_barang', 'like','%'.$cari.'%')
+            ->paginate(5);
+        return view('barang.index',compact('posts'));
     }
 
 }
