@@ -53,10 +53,14 @@
             <form action="{{ route('barang.destroy',$Barang->kode_barang) }}" method="POST">
                 <a class="btn btn-info" href="{{ route('barang.show',$Barang->kode_barang) }}">Show</a>
                 <a class="btn btn-primary" href="{{ route('barang.edit',$Barang->kode_barang) }}">Edit</a>
-        @csrf
-        @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
+
             </form>
+        <form action="{{route('barang.destroy',$Barang->kode_barang) }}" method="POST" onsubmit="return confirm('Yakin Hapus?')">
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+
         </td>
 
     </tr>
